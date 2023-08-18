@@ -14,11 +14,11 @@
 #' @examples
 #' supplierUI()
 supplierUI <- function(tabTitle ='供应商',
-                   colTitles =c('ECS系统操作','ERP系统操作','显示操作'),
-                   widthRates =c(6,6,12),
-                   func_left = supplierUI_left,
-                   func_right =supplierUI_right,
-                   func_bottom = supplierUI_bottom
+                       colTitles =c('ECS系统操作','ERP系统操作','显示操作'),
+                       widthRates =c(6,6,12),
+                       func_left = supplierUI_left,
+                       func_right =supplierUI_right,
+                       func_bottom = supplierUI_bottom
 ) {
 
   #三栏式设置，可以复制
@@ -42,10 +42,16 @@ supplierUI_left <- function() {
 
 
   res <- tagList(
+    tsui::mdl_ListChoose1(id ="supplierERP",label =  "ERP账套名",
+                          choiceNames = list("赛普集团新账套"),
+                          choiceValues =list("赛普集团新账套"),selected = list("赛普集团新账套")),
     tsui::mdl_text(id = 'txt_supplierSourceSync_manually',label = '请输入供应商代码'),
+
     shinyWidgets::actionBttn(inputId = 'btn_supplierSourceSync_log',label = '日志查询'),
     shinyWidgets::actionBttn(inputId = 'btn_supplierSourceSync_update',label = '更新同步状态'),
     shinyWidgets::actionBttn(inputId = 'btn_supplierSourceSync_manually',label = '按单同步'),
+    shinyWidgets::actionBttn(inputId = 'btn_supplierByFNumber_query',label = '按单据编号查询'),
+
     hr(),
     tsui::mdl_date(id = 'date_supplierSourceSync_auto',label = '选择日期'),
     shinyWidgets::actionBttn(inputId = 'btn_supplierSourceSync_auto',label = '手动同步'),
@@ -73,6 +79,14 @@ supplierUI_left <- function() {
 #' supplierUI_bottom()
 supplierUI_right <- function() {
   res <- tagList(
+
+
+    tsui::mdl_ListChoose1(id ="supplierERP2",label =  "ERP账套名",
+                          choiceNames = list('赛普集团新账套'),
+                          choiceValues =list("赛普集团新账套"),selected = list("赛普集团新账套")),
+    # selectInput(inputId = "supplierERP2",
+    #             label = "ERP账套名",
+    #             choices = c("赛普集团新账套", "测试账套")),
 
     tsui::mdl_text(id = 'txt_supplierERP_manually',label = '请输入供应商编码'),
     shinyWidgets::actionBttn(inputId = 'btn_supplierERP_manually',label = '按单查询'),
