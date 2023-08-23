@@ -14,11 +14,11 @@
 #' @examples
 #' materialUI()
 materialUI <- function(tabTitle ='物料',
-                   colTitles =c('ECS系统操作','ERP系统操作','显示操作'),
-                   widthRates =c(6,6,12),
-                   func_left = materialUI_left,
-                   func_right =materialUI_right,
-                   func_bottom = materialUI_bottom
+                       colTitles =c('ECS系统操作','ERP系统操作','显示操作'),
+                       widthRates =c(6,6,12),
+                       func_left = materialUI_left,
+                       func_right =materialUI_right,
+                       func_bottom = materialUI_bottom
 ) {
 
   #三栏式设置，可以复制
@@ -42,10 +42,16 @@ materialUI_left <- function() {
 
 
   res <- tagList(
+    tsui::mdl_ListChoose1(id ="materialERP",label =  "ERP账套名",
+                          choiceNames = list("赛普集团新账套"),
+                          choiceValues =list("赛普集团新账套"),selected = list("赛普集团新账套")),
     tsui::mdl_text(id = 'txt_materialSourceSync_manually',label = '请输入物料代码'),
+
     shinyWidgets::actionBttn(inputId = 'btn_materialSourceSync_log',label = '日志查询'),
     shinyWidgets::actionBttn(inputId = 'btn_materialSourceSync_update',label = '更新同步状态'),
     shinyWidgets::actionBttn(inputId = 'btn_materialSourceSync_manually',label = '按单同步'),
+    shinyWidgets::actionBttn(inputId = 'btn_materialByFNumber_query',label = '按单据编号查询'),
+
     hr(),
     tsui::mdl_date(id = 'date_materialSourceSync_auto',label = '选择日期'),
     shinyWidgets::actionBttn(inputId = 'btn_materialSourceSync_auto',label = '手动同步'),
@@ -73,6 +79,14 @@ materialUI_left <- function() {
 #' materialUI_bottom()
 materialUI_right <- function() {
   res <- tagList(
+
+
+    tsui::mdl_ListChoose1(id ="materialERP2",label =  "ERP账套名",
+                          choiceNames = list('赛普集团新账套'),
+                          choiceValues =list("赛普集团新账套"),selected = list("赛普集团新账套")),
+    # selectInput(inputId = "materialERP2",
+    #             label = "ERP账套名",
+    #             choices = c("赛普集团新账套", "测试账套")),
 
     tsui::mdl_text(id = 'txt_materialERP_manually',label = '请输入物料编码'),
     shinyWidgets::actionBttn(inputId = 'btn_materialERP_manually',label = '按单查询'),
